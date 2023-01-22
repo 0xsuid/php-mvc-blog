@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block heading %}
+	Login
+{% endblock %}
+
+{% block content %}
+	<form class="row d-flex justify-content-center" action="" method="post">
+		<div class="col-9">
+			<div class="mb-3">
+				<label for="username" class="form-label">Username</label>
+				<input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
+				<span class="text-danger">{{ data['usernameError'] }}</span>
+			</div>
+			<div class="mb-3">
+				<label for="password" class="form-label">Password</label>
+				<input type="password" class="form-control" name="password" id="password" placeholder="Password">
+				<span class="text-danger">{{ data['passwordError'] }}</span>
+			</div>
+			<div class="mb-2 mt-4">
+				<button type="submit" class="btn btn-primary form-control">Submit</button>
+			</div>
+		</div>
+	</form>
+{% endblock %}

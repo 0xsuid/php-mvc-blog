@@ -1,0 +1,22 @@
+{
+    "name": "harsh/blog",
+    "type": "project",
+    "license": "GPLv3",
+    "autoload": {
+        "psr-4": {
+            "Harsh\\Blog\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "0xsuid",
+            "email": "0xsuid@protonmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^5.5",
+        "twig/twig": "^3.0",
+        "psr/container": "^2.0"
+    }
+}

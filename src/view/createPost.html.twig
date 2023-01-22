@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block heading %}
+	Create Post
+{% endblock %}
+
+{% block content %}
+	<form class="row d-flex justify-content-center" action="" method="post">
+		<div class="col-9">
+			<div class="mb-3">
+				<label for="title" class="form-label">Title</label>
+				<input type="text" class="form-control" name="title" id="title" placeholder="Enter title">
+				<span class="text-danger">{{ data['titleError'] }}</span>
+			</div>
+			<div class="mb-3">
+				<label for="link" class="form-label">Link</label>
+				<input type="text" class="form-control" name="link" id="link" placeholder="Enter link">
+				<span class="text-danger">{{ data['linkError'] }}</span>
+			</div>
+			<div class="mb-3">
+				<label for="description" class="form-label">Description</label>
+				<input type="text" class="form-control" name="description" id="description" placeholder="Enter description">
+				<span class="text-danger">{{ data['descriptionError'] }}</span>
+			</div>
+			<div class="mb-2 mt-4">
+				<button type="submit" class="btn btn-primary form-control">Submit</button>
+			</div>
+		</div>
+	</form>
+{% endblock %}
