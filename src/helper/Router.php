@@ -11,12 +11,12 @@ class Router
 
     public function get(string $path, $controller)
     {
-        $this->addController(self::POST_METHOD, $path, $controller);
+        $this->addController(self::GET_METHOD, $path, $controller);
     }
 
     public function post(string $path, $controller)
     {
-        $this->addController(self::GET_METHOD, $path, $controller);
+        $this->addController(self::POST_METHOD, $path, $controller);
     }
 
     public function addNotFoundController($controller)
@@ -54,29 +54,29 @@ class Router
         $requestPath = $requestURI['path'];
         $requestMethod = $_SERVER['REQUEST_METHOD'];
 
-        $controller = null;
+        $currentController = null;
         // Find controller for requested Path & Method
         foreach ($this->controllers as $controller) {
             if ($requestPath === $controller['path']  && $requestMethod === $controller['method']) {
-                $controller = $controller['controller'];
+                $currentController = $controller['controller'];
                 break;
             }
         }
 
         // To invoke methods of a class
-        if (is_array($controller)) {
-            $controller = $this->getClassInstance($controller);
+        if (is_array($currentController)) {
+            $currentController = $this->getClassInstance($currentController);
         }
 
         // When Unkown route is requested - 404 page
-        if (!$controller) {
+        if (!$currentController) {
             if (!empty($this->notFoundController)) {
-                $controller = $this->getClassInstance($this->notFoundController);
+                $currentController = $this->getClassInstance($this->notFoundController);
             }
         }
 
         // Call a callback with an array of parameters
-        call_user_func_array($controller, [
+        call_user_func_array($currentController, [
             array_merge($_GET, $_POST)
         ]);
     }
