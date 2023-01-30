@@ -40,7 +40,6 @@ class User
         }
 
         $hash = $result['password'];
-        var_dump($hash);
 
         return password_verify($password, $hash) ? $result : false;
     }
