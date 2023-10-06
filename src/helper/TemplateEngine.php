@@ -10,6 +10,7 @@ class TemplateEngine
 {
     private static $templateInstance = null;
     private static $fileSystemLoader = null;
+
     private function __construct()
     {
     }
@@ -23,13 +24,16 @@ class TemplateEngine
         // Check if template instance is null
         if (self::$templateInstance == null) {
             try {
-                $templateDir = __DIR__ . './../view';
+                $templateDir = __DIR__ . '/../View';
                 self::$fileSystemLoader = new FilesystemLoader($templateDir);
 
                 self::$templateInstance = new Environment(self::$fileSystemLoader, [
-                    'cache' => __DIR__ .'./../../cache/twig',
-                    'debug' => true
+                    'cache' => __DIR__ .'/../../cache/twig',
+                    'debug' => APP_DEBUG
                 ]);
+                if(APP_DEBUG === TRUE){
+                    self::$templateInstance->addExtension(new \Twig\Extension\DebugExtension());
+                }
                 self::$templateInstance->addGlobal('session', $_SESSION);
             } catch (Exception $e) {
                 echo $e->getMessage();
